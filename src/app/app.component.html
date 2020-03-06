@@ -1,0 +1,41 @@
+<div class="container jumbotron">
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-outline-primary" (click)="showAddUserForm()" type="button">Add User</button>
+      <br>
+      <br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <td width="35%">Name</td>
+            <td width="20%">Age</td>
+            <td width="20%">Phone</td>
+            <td width="25%">Action</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of dataList; let i = index">
+            <td>{{user.name}}</td>
+            <td>{{user.age}}</td>
+            <td>{{user.phone}}</td>
+            <td class="text-center">
+              <a href="javascript:void(0)"  (click)="editDataUser(i)" class="btn btn-info"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;
+              <a href="javascript:void(0)"  (click)="deleteDataUser(i)" class="btn btn-danger"><i class="fas fa-trash"></i> </a> 
+            </td>
+          </tr>
+          <tr *ngIf="showForm">
+            <td colspan="4">
+              <app-add-user-form [message]="editData" [editUserStatus]="noOfItem" (showUserForm)="hideUserForm($event)" (submitUsersData)="pushToArray($event)"></app-add-user-form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+  </div>
+</div>
+
